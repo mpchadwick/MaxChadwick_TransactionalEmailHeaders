@@ -54,7 +54,7 @@ class MaxChadwick_TransactionalEmailHeaders_Block_Email_Form extends Mage_Adminh
       $fieldset->addField('template_mailgun_campaign', 'text', array(
           'name'=>'template_mailgun_campaign',
           'label' => Mage::helper('adminhtml')->__('Template Mailgun Campaign'),
-          'required' => true
+          'required' => false
       ));
 
       $fieldset->addField('orig_template_variables', 'hidden', array(
