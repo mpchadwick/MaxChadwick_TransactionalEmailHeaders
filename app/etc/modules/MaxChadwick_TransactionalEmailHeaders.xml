@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MaxChadwick_TransactionalEmailHeaders>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+               <Mage_Adminhtml />
+            </depends>
+        </MaxChadwick_TransactionalEmailHeaders>
+    </modules>
+</config>

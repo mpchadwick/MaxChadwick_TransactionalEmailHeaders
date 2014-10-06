@@ -1,0 +1,3 @@
+<?php
+
+class MaxChadwick_TransactionalEmailHeaders_Model_Resource_Setup extends Mage_Core_Model_Resource_Setup {}
