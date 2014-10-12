@@ -28,9 +28,9 @@ class MaxChadwick_TransactionalEmailHeaders_Model_Email_Template extends Mage_Co
 
         $mail = $this->getMail();
 
-        // Add Mailgun Campaign Header
-        if($mailgunCampaign = $this->getTemplateMailgunCampaign()) {
-            $mail->addHeader('X-Mailgun-Campaign-Id', $mailgunCampaign);
+        $headers = Mage::getModel('transactionalemailheaders/email_header')->getCollection()->addFieldToFilter('template_id', $this->getTemplateId());
+        foreach($headers as $header) {
+            $mail->addHeader($header['title'], $header['description']);
         }
 
         $setReturnPath = Mage::getStoreConfig(self::XML_PATH_SENDING_SET_RETURN_PATH);
