@@ -23,7 +23,6 @@ class MaxChadwick_TransactionalEmailHeaders_System_Email_TemplateController exte
         try {
             $template->setTemplateSubject($request->getParam('template_subject'))
                 ->setTemplateCode($request->getParam('template_code'))
-                ->setTemplateMailgunCampaign($request->getParam('template_mailgun_campaign')) //Set Mailgun Campaign
                 ->setTemplateText($request->getParam('template_text'))
                 ->setTemplateStyles($request->getParam('template_styles'))
                 ->setModifiedAt(Mage::getSingleton('core/date')->gmtDate())
