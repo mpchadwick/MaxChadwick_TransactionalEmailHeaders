@@ -90,11 +90,11 @@ class MaxChadwick_TransactionalEmailHeaders_Block_Email_Form extends Mage_Adminh
           ));
       }
 
+      // Add 
       $fieldset->addField('template_mime_headers', 'text', array(
         'name' => 'template_mime_headers',
         'label' => 'Template MIME Headers',
-        'required' => false,
-        'after_element_html' => $this->getEmailTemplate()->getId()
+        'required' => false
       ));
 
       $form->getElement('template_mime_headers')->setRenderer(
