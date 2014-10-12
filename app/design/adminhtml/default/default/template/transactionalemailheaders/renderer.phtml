@@ -1,0 +1,63 @@
+<?php 
+$_htmlId      = $this->getElement()->getHtmlId();
+$_htmlClass   = $this->getElement()->getClass();
+$_htmlName    = $this->getElement()->getName();
+$_readonly    = $this->getElement()->getReadonly();
+
+$_counter = 0;
+
+$template_id = $this->getRequest()->getParam('id');
+$headers = Mage::getModel('transactionalemailheaders/email_header')->getCollection()->addFieldToFilter('template_id', $template_id);
+
+?>
+<tr>
+	<td class="label"><?php echo $this->getElement()->getLabel() ?></td>
+	<td class="value">
+		<table id="attribute-options-table" class="dynamic-grid">
+			<tr>
+				<th>Header Name</th>
+				<th>Header Value</th>
+				<th><button id="add_new_option_button" title="Add Option" type="button" class="scalable add"><span><span><span><?php echo $this->__('Add Option') ?></span></span></span></button></th>
+			</tr>
+			<?php foreach($headers as $header): ?>
+			<tr class="option-row transactionalemailheaders-row" id="header-row-<?php echo $_counter; ?>">
+				<td>
+					<input name="<?php echo $_htmlName; ?>[option_<?php echo $_counter ?>][name]" value="<?php echo $header->getTitle() ?>" class="input-text" type="text">
+				</td>
+		    <td>
+		    	<input name="<?php echo $_htmlName; ?>[option_<?php echo $_counter ?>][value]" value="<?php echo $header->getDescription() ?>" class="input-text" type="text">
+		    </td>
+		    <td class="a-left" id="delete_button_container_option_<?php echo $_counter ?>'">
+		        <input name="<?php echo $_htmlName; ?>[option_<?php echo $_counter ?>][id]" value="<?php echo $header->getId() ?>" type="hidden">
+		        <input id="delete-row-<?php echo $_counter ?>" type="hidden" class="delete-flag" name="<?php echo $_htmlName; ?>[option_<?php echo $_counter ?>][delete]" value=""/>
+		        <button onclick="$('header-row-<?php echo $_counter ?>').style.display='none'; $('delete-row-<?php echo $_counter ?>').setValue(1);" title="Delete" type="button" class="scalable delete delete-option"><span><span><span>Delete</span></span></span></button>
+		    </td>
+		   </tr>
+		   <?php $_counter++; ?>
+			<?php endforeach; ?>
+		</table>
+	</td>
+</tr>
+
+<script type="text/javascript">
+
+var _form_html_row = '<tr class="option-row transactionalemailheaders-row" id="header-row-{{id}}">' +
+		'<td><input name="<?php echo $_htmlName; ?>[option_{{id}}][name]" class="input-text" type="text"></td>' +	
+		'<td><input name="<?php echo $_htmlName; ?>[option_{{id}}][value]" class="input-text" type="text"></td>' +
+		'<td class="a-left" id="delete_button_container_option_{{id}}">' +
+			'<input name="<?php echo $_htmlName; ?>[option_{{id}}][id]" value="" type="hidden">' +
+			'<input id="delete-row-{{id}}" type="hidden" class="delete-flag" name="<?php echo $_htmlName; ?>[option_{{id}}][delete]" value=""/>' +
+			'<button onclick="$(\'header-row-{{id}}\').style.display=\'none\'; $(\'delete-row-{{id}}\').setValue(1);" title="Delete" type="button" class="scalable delete delete-option">' +
+				'<span><span><span>Delete</span></span></span>' +
+			'</button>' +
+		'</td>' +
+	'</tr>';
+
+
+var _transactionalemailheaders_counter = <?php echo $_counter; ?>;
+
+$('add_new_option_button').observe('click', function() {
+	$('attribute-options-table').insert(_form_html_row.replace(/\{\{id\}\}/ig, _transactionalemailheaders_counter));
+	_transactionalemailheaders_counter++;
+})
+</script>

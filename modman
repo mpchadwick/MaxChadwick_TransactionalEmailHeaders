@@ -1,2 +1,3 @@
 app/code/community/MaxChadwick/															app/code/community/MaxChadwick/
 app/etc/modules/MaxChadwick_TransactionalEmailHeaders.xml 	app/etc/modules/MaxChadwick_TransactionalEmailHeaders.xml
+app/design/adminhtml/default/default/template/transactionalemailheaders app/design/adminhtml/default/default/template/transactionalemailheaders

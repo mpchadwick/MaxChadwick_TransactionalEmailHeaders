@@ -3,7 +3,7 @@
 class MaxChadwick_TransactionalEmailHeaders_Model_Email_Template extends Mage_Core_Model_Email_Template
 {
 
-    // Override core send method to add Mailgun header
+    // Override core send method to add headers
 	public function send($email, $name = null, array $variables = array())
     {
         if (!$this->isValidForSend()) {

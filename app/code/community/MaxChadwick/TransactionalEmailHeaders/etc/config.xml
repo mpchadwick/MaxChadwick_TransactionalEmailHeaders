@@ -2,7 +2,7 @@
 <config>
     <modules>
         <MaxChadwick_TransactionalEmailHeaders>
-            <version>0.0.1</version>
+            <version>1.0.0</version>
         </MaxChadwick_TransactionalEmailHeaders>
     </modules>
     <global>
@@ -19,7 +19,16 @@
         <models>
             <transactionalemailheaders>
                 <class>MaxChadwick_TransactionalEmailHeaders_Model</class>
+                <resourceModel>transactionalemailheaders_resource</resourceModel>
             </transactionalemailheaders>
+            <transactionalemailheaders_resource>
+                <class>MaxChadwick_TransactionalEmailHeaders_Model_Resource</class>
+                <entities>
+                    <email_header>
+                        <table>transactionalemailheaders_email_header</table>
+                    </email_header>
+                </entities>
+            </transactionalemailheaders_resource>
             <core>
                 <rewrite>
                     <email_template>MaxChadwick_TransactionalEmailHeaders_Model_Email_Template</email_template>

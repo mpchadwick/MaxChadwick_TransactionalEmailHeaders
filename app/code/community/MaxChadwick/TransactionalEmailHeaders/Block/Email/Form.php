@@ -50,13 +50,6 @@ class MaxChadwick_TransactionalEmailHeaders_Block_Email_Form extends Mage_Adminh
           'required' => true
       ));
 
-      // Add Mailgun Campaign Field
-      $fieldset->addField('template_mailgun_campaign', 'text', array(
-          'name'=>'template_mailgun_campaign',
-          'label' => Mage::helper('adminhtml')->__('Template Mailgun Campaign'),
-          'required' => false
-      ));
-
       $fieldset->addField('orig_template_variables', 'hidden', array(
           'name' => 'orig_template_variables',
       ));
@@ -96,6 +89,17 @@ class MaxChadwick_TransactionalEmailHeaders_Block_Email_Form extends Mage_Adminh
               'container_id' => 'field_template_styles'
           ));
       }
+
+      $fieldset->addField('template_mime_headers', 'text', array(
+        'name' => 'template_mime_headers',
+        'label' => 'Template MIME Headers',
+        'required' => false,
+        'after_element_html' => $this->getEmailTemplate()->getId()
+      ));
+
+      $form->getElement('template_mime_headers')->setRenderer(
+        $this->getLayout()->createBlock('transactionalemailheaders/email_renderer')
+      );
 
       if ($templateId) {
           $form->addValues($this->getEmailTemplate()->getData());
